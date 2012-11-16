@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger", "MediaTagger\MediaTagger.csproj", "{4011586E-4ABE-4573-9608-41D18D4F2CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{06F24868-D841-4BD1-ACDF-599C86546FED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.ActiveCfg = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.Build.0 = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.ActiveCfg = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.Build.0 = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.ActiveCfg = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.Build.0 = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.ActiveCfg = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
