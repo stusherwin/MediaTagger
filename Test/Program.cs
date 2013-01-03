@@ -14,7 +14,7 @@ namespace Test
             //(
             //    new[] 
             //    {
-            //        new LibraryFolder(@"C:\Users\Stuart\AppData\Roaming\Mozilla\Firefox\Profiles\gkmv77kk.Stu\downloads")
+            //        new LibraryFolder(@"C:\Files")
             //    }, 
             //    new[]
             //    {

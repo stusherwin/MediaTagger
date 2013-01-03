@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FubuMVC</id>
+    <version>0.9.5.926</version>
+    <authors>Chad Myers,  Jeremy D. Miller,  Joshua Flanagan</authors>
+    <owners>Chad Myers,  Jeremy D. Miller,  Joshua Flanagan</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A compositional, convention-based framework for complex web applications.
+		This package allows you to quickly create a new FubuMVC web application. If you just want to reference
+		the FubuMVC libraries without the guidance, use the FubuMVC.Lib package instead.</description>
+    <tags>web framework mvc</tags>
+    <dependencies>
+      <dependency id="FubuMVC.References" />
+      <dependency id="WebActivator" version="1.1" />
+    </dependencies>
+    <references>
+      <reference file="Microsoft.Web.Infrastructure.dll" />
+    </references>
+  </metadata>
+</package>

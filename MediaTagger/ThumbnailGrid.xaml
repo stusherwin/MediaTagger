@@ -5,41 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mt="clr-namespace:MediaTagger"
              mc:Ignorable="d" 
+             x:Name="Grid"
              d:DesignHeight="300" d:DesignWidth="800">
     
     <UserControl.Resources>
         <mt:WidthConverter x:Key="WidthConverter"></mt:WidthConverter>
         <mt:HeightConverter x:Key="HeightConverter"></mt:HeightConverter>
-        <Style x:Key="ThumbnailGridStyle" TargetType="WrapPanel">
+        <Style TargetType="ListBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <ScrollViewer Padding="5" Background="Black" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <WrapPanel IsItemsHost="True"></WrapPanel>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Resources>
-                <Style TargetType="Button">
+                <Style TargetType="ListBoxItem">
                     <Setter Property="Margin" Value="5"></Setter>
-                    <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WrapPanel}}, Path=ActualWidth, Converter={StaticResource WidthConverter}, ConverterParameter='200,150,5'}"></Setter>
-                    <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WrapPanel}}, Path=ActualWidth, Converter={StaticResource HeightConverter}, ConverterParameter='200,150,5'}"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="Width" Value="{Binding 
+                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, 
+                        Path=ViewportWidth, 
+                        Converter={StaticResource WidthConverter}, 
+                        ConverterParameter='200,160,5'}">
+                    </Setter>
+                    <Setter Property="Height" Value="{Binding 
+                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, 
+                        Path=ViewportWidth, 
+                        Converter={StaticResource HeightConverter}, 
+                        ConverterParameter='200,160,5'}">
+                    </Setter>
                 </Style>
             </Style.Resources>
         </Style>
+        <DataTemplate x:Key="ThumbnailTemplate">
+            <!--<mt:Thumbnail HorizontalAlignment="Center" VerticalAlignment="Center" MediaFile="{Binding}" MouseDown="Image_MouseDown"></mt:Thumbnail>-->
+            <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Source=""></Image>
+        </DataTemplate>
     </UserControl.Resources>
-    
-    <ScrollViewer Padding="5" Background="Black" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <WrapPanel Style="{StaticResource ThumbnailGridStyle}">
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
-            <Button>6</Button>
-            <Button>7</Button>
-            <Button>8</Button>
-            <Button>9</Button>
-            <Button>10</Button>
-            <Button>11</Button>
-            <Button>12</Button>
-            <Button>13</Button>
-            <Button>14</Button>
-            <Button>15</Button>
-            <Button>16</Button>
-        </WrapPanel>
-    </ScrollViewer>
-    
+    <ListBox ItemsSource="{Binding Path=Items}" ItemTemplate="{StaticResource ThumbnailTemplate}"></ListBox>
 </UserControl>

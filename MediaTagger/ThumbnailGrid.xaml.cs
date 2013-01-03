@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Test;
 
 namespace MediaTagger
 {
@@ -19,9 +20,22 @@ namespace MediaTagger
     /// </summary>
     public partial class ThumbnailGrid : UserControl
     {
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(List<MediaFile>), typeof(ThumbnailGrid));
+
+        public List<MediaFile> Items
+        {
+            get { return (List<MediaFile>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
+        }
+
         public ThumbnailGrid()
         {
             InitializeComponent();
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            new VideoPopupWindow().ShowDialog();
         }
     }
 }
