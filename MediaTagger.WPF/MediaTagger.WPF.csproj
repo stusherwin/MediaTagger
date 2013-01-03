@@ -125,9 +125,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Test\Test.csproj">
+    <ProjectReference Include="..\MediaTagger.Core\MediaTagger.Core.csproj">
       <Project>{06F24868-D841-4BD1-ACDF-599C86546FED}</Project>
-      <Name>Test</Name>
+      <Name>MediaTagger.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

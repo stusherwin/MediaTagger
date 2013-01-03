@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger", "MediaTagger\MediaTagger.csproj", "{4011586E-4ABE-4573-9608-41D18D4F2CE6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{06F24868-D841-4BD1-ACDF-599C86546FED}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.API", "MediaTagger.API\MediaTagger.API.csproj", "{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlayer", "VideoPlayer\VideoPlayer.csproj", "{156FF37D-21DB-44D2-8DB4-DE3F955DB5EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.Html5", "MediaTagger.Html5\MediaTagger.Html5.csproj", "{FDADADF4-FE95-40DE-9802-6E843FD88A9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.Core", "MediaTagger.Core\MediaTagger.Core.csproj", "{06F24868-D841-4BD1-ACDF-599C86546FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.WPF", "MediaTagger.WPF\MediaTagger.WPF.csproj", "{4011586E-4ABE-4573-9608-41D18D4F2CE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,26 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.ActiveCfg = Debug|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.Build.0 = Debug|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Any CPU.ActiveCfg = Release|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Mixed Platforms.Build.0 = Release|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.ActiveCfg = Release|x86
-		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.Build.0 = Release|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.ActiveCfg = Debug|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.Build.0 = Debug|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Any CPU.ActiveCfg = Release|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Mixed Platforms.Build.0 = Release|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.ActiveCfg = Release|x86
-		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.Build.0 = Release|x86
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -71,6 +51,26 @@ Global
 		{FDADADF4-FE95-40DE-9802-6E843FD88A9A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FDADADF4-FE95-40DE-9802-6E843FD88A9A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FDADADF4-FE95-40DE-9802-6E843FD88A9A}.Release|x86.ActiveCfg = Release|Any CPU
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.ActiveCfg = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Debug|x86.Build.0 = Debug|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Any CPU.ActiveCfg = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|Mixed Platforms.Build.0 = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.ActiveCfg = Release|x86
+		{06F24868-D841-4BD1-ACDF-599C86546FED}.Release|x86.Build.0 = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.ActiveCfg = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Debug|x86.Build.0 = Debug|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Any CPU.ActiveCfg = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.ActiveCfg = Release|x86
+		{4011586E-4ABE-4573-9608-41D18D4F2CE6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
