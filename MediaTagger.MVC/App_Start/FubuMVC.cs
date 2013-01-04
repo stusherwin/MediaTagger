@@ -5,9 +5,9 @@ using FubuMVC.StructureMap;
 using StructureMap;
 
 // You can remove the reference to WebActivator by calling the Start() method from your Global.asax Application_Start
-[assembly: WebActivator.PreApplicationStartMethod(typeof(MediaBrowser.App_Start.AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(MediaTagger.Server.App_Start.AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
 
-namespace MediaBrowser.App_Start
+namespace MediaTagger.Server.App_Start
 {
     public static class AppStartFubuMVC
     {

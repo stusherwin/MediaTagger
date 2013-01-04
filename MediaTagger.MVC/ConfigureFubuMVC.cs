@@ -1,6 +1,7 @@
 using FubuMVC.Core;
+using System.Drawing;
 
-namespace MediaBrowser
+namespace MediaTagger.Server
 {
     public class ConfigureFubuMVC : FubuRegistry
     {
@@ -22,6 +23,9 @@ namespace MediaBrowser
             // Match views to action methods by matching
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
+
+            Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
+            Output.ToBehavior<ImageBehaviour>().WhenTheOutputModelIs<ImageOutputModel>();
         }
     }
 }
