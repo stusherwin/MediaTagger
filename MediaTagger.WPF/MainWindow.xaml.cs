@@ -12,8 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using Test;
 using System.Threading;
+using MediaTagger.Core;
 
 namespace MediaTagger
 {
@@ -28,7 +28,7 @@ namespace MediaTagger
         {
             get
             {
-                return new MediaFile(new FileInfo(@"C:\Files\flv.flv"), new MediaFileType("Flv", ".flv", MediaType.Video));
+                return MediaFile.FromFileInfo(new FileInfo(@"C:\Files\flv.flv"), new MediaFileType("Flv", ".flv", MediaType.Video));
             }
         }
 
@@ -60,15 +60,7 @@ namespace MediaTagger
                 {
                     new LibraryFolder(@"C:\Files")
                 },
-                new[]
-                {
-                    new MediaFileType("Flash video", "flv", MediaType.Video),
-                    new MediaFileType("Windows media", "wmv", MediaType.Video),
-                    new MediaFileType("Mp4", "mp4", MediaType.Video),
-                    new MediaFileType("Avi", "avi", MediaType.Video),
-                    //new MediaFileType("Jpeg", "jpg", MediaType.Image),
-                    //new MediaFileType("Gif", "gif", MediaType.Image),
-                }
+                new MediaFile[] {}
             );
 
             InitializeComponent();

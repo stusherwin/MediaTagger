@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Test
+namespace MediaTagger.Core
 {
     public class LibraryFolder
     {
@@ -20,7 +20,7 @@ namespace Test
             return
                 from t in types
                 from f in new DirectoryInfo(Path).GetFiles("*." + t.Extension, SearchOption.AllDirectories)
-                select new MediaFile(f, t);
+                select MediaFile.FromFileInfo(f, t);
         }
     }
 }

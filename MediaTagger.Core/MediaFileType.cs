@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Test
+namespace MediaTagger.Core
 {
     public class MediaFileType
     {
@@ -22,5 +22,15 @@ namespace Test
         {
             return Name;
         }
+
+        public static MediaFileType[] All = new[] 
+        {
+            new MediaFileType("Flash video", "flv", MediaType.Video),
+            new MediaFileType("Windows media", "wmv", MediaType.Video),
+            new MediaFileType("Mp4", "mp4", MediaType.Video),
+            new MediaFileType("Avi", "avi", MediaType.Video),
+            new MediaFileType("Jpeg", "jpg", MediaType.Image),
+            new MediaFileType("Gif", "gif", MediaType.Image),
+        };
     }
 }

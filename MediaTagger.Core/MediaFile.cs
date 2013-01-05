@@ -4,24 +4,37 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Test
+namespace MediaTagger.Core
 {
     public class MediaFile
     {
-        private FileInfo _fileInfo;
-
         public MediaFileType MediaFileType { get; private set; }
         public ICollection<Tag> Tags { get; private set; }
+        public string Name { get; private set; }
+        public string Path { get; private set; }
+        public DateTime LastModified { get; private set; }
+        public FileSize Size { get; private set; }
 
-        public string Name { get { return System.IO.Path.GetFileNameWithoutExtension(_fileInfo.Name); } }
-        public string Path { get { return _fileInfo.FullName; } }
-        public DateTime LastModified { get { return _fileInfo.LastWriteTime; } }
-        public FileSize Size { get { return new FileSize(_fileInfo.Length); } }
-
-        public MediaFile(FileInfo fileInfo, MediaFileType mediaFileType)
+        public MediaFile(string name, string path, DateTime lastModified, FileSize size, MediaFileType type, ICollection<Tag> tags)
         {
-            _fileInfo = fileInfo;
-            MediaFileType = mediaFileType;
+            Name = name;
+            Path = path;
+            LastModified = lastModified;
+            Size = size;
+            MediaFileType = type;
+            Tags = tags;
+        }
+
+        public static MediaFile FromFileInfo(FileInfo fileInfo, MediaFileType mediaFileType)
+        {
+            return new MediaFile(
+                System.IO.Path.GetFileNameWithoutExtension(fileInfo.Name),
+                fileInfo.FullName,
+                fileInfo.LastWriteTime,
+                new FileSize(fileInfo.Length),
+                mediaFileType,
+                new List<Tag>()
+            );
         }
     }
 }

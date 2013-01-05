@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Test
+namespace MediaTagger.Core
 {
     public class FileSize
     {
-        private long _bytes;
-
-        public FileSizeUnit Unit { get { return FileSizeUnit.FromBytes(_bytes); } }
-        public double Value { get { return Unit.GetValue(_bytes); } }
+        public long Bytes { get; set; }
+        public FileSizeUnit Unit { get { return FileSizeUnit.FromBytes(Bytes); } }
+        public double Value { get { return Unit.GetValue(Bytes); } }
 
         public FileSize(long bytes)
         {
-            _bytes = bytes;
+            Bytes = bytes;
         }
 
         public override string ToString()

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MediaTagger.Core
+namespace MediaTagger.Server
 {
-    public enum OrderDirection
+    public class LibrarySettings
     {
-        Ascending,
-        Descending
+        public string LibraryFile { get; set; }
     }
 }
