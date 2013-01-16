@@ -71,6 +71,7 @@ namespace MediaTagger.Core
             return candidate;
         }
 
+        //TODO: move to Duration value object
         private static TimeSpan RestrictToVideoDuration(TimeSpan time, MediaFile videoFile)
         {
             return time > videoFile.Duration 

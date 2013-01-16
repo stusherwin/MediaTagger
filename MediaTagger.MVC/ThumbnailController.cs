@@ -18,11 +18,13 @@ namespace MediaTagger.Server
     {
         private Library _library;
         private IThumbnailGenerator _generator;
+        private ThumbnailGeneratorSettings _settings;
 
-        public ThumbnailController(Library library, IThumbnailGenerator generator)
+        public ThumbnailController(Library library, IThumbnailGenerator generator, ThumbnailGeneratorSettings settings)
         {
             _library = library;
             _generator = generator;
+            _settings = settings;
         }
 
         public ThumbnailOutputModel get_Thumbnail_FileId(ThumbnailInputModel model)
@@ -32,7 +34,7 @@ namespace MediaTagger.Server
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            TimeSpan thumbnailTime = new TimeSpan(videoFile.Duration.Ticks / 4);
+            TimeSpan thumbnailTime = GetDefaultThumbnailTime(videoFile);
 
             return GenerateOutput(videoFile, thumbnailTime);
         }
@@ -52,6 +54,12 @@ namespace MediaTagger.Server
             var thumbnail = _generator.Generate(videoFile, thumbnailTime);
 
             return new ThumbnailOutputModel(thumbnail);
+        }
+
+        //TODO: move to Duration value object
+        private TimeSpan GetDefaultThumbnailTime(MediaFile videoFile)
+        {
+            return new TimeSpan((long)(videoFile.Duration.Ticks * _settings.DefaultThumbnailTimePercentage / 100.0));
         }
     }
 }
