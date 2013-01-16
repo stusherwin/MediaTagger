@@ -39,6 +39,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,8 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachingThumbnailGenerator.cs" />
+    <Compile Include="FfmpegWrapper.cs" />
     <Compile Include="FileSize.cs" />
     <Compile Include="FileSizeUnit.cs" />
+    <Compile Include="ImageType.cs" />
+    <Compile Include="IThumbnailGenerator.cs" />
+    <Compile Include="LibraryLoader.cs" />
+    <Compile Include="ThumbnailImage.cs" />
+    <Compile Include="FfmpegThumbnailGenerator.cs" />
     <Compile Include="Xml\TagXmlConverter.cs" />
     <Compile Include="Xml\MediaFileXmlConverter.cs" />
     <Compile Include="Library.cs" />
@@ -62,6 +70,11 @@
     <Compile Include="SortOrder.cs" />
     <Compile Include="SortOrderType.cs" />
     <Compile Include="Tag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,7 +25,9 @@ namespace MediaTagger.Server
             Views.TryToAttachWithDefaultConventions();
 
             Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
-            Output.ToBehavior<ImageBehaviour>().WhenTheOutputModelIs<ImageOutputModel>();
+            Output.ToBehavior<ThumbnailBehaviour>().WhenTheOutputModelIs<ThumbnailOutputModel>();
+
+            Models.ConvertUsing<TimeSpanConverter>();
         }
     }
 }

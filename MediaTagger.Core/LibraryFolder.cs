@@ -14,13 +14,5 @@ namespace MediaTagger.Core
         {
             Path = path;
         }
-
-        public IEnumerable<MediaFile> GetFiles(IEnumerable<MediaFileType> types)
-        {
-            return
-                from t in types
-                from f in new DirectoryInfo(Path).GetFiles("*." + t.Extension, SearchOption.AllDirectories)
-                select MediaFile.FromFileInfo(f, t);
-        }
     }
 }

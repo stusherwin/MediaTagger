@@ -5,6 +5,9 @@ using System.Web;
 using StructureMap;
 using FubuMVC.StructureMap;
 using FubuCore.Configuration;
+using MediaTagger.Core;
+using MediaTagger.Core.Xml;
+using System.Web.Hosting;
 
 namespace MediaTagger.Server
 {
@@ -23,6 +26,35 @@ namespace MediaTagger.Server
                 });
 
                 x.For<ISettingsProvider>().Use<AppSettingsProvider>();
+
+                x.For<Library>().Singleton().Use(() =>
+                {
+                    var converter = container.GetInstance<LibraryXmlConverter>();
+                    var settings = container.GetInstance<LibrarySettings>();
+
+                    return converter.ReadFromFile(settings.LibraryFile);
+                });
+
+                x.For<FfmpegWrapper>().Use(() =>
+                {
+                    var settings = container.GetInstance<ThumbnailGeneratorSettings>();
+
+                    return new FfmpegWrapper(
+                        HostingEnvironment.MapPath(settings.FfmpegPath)
+                    );
+                });
+
+                x.For<IThumbnailGenerator>().Use(() =>
+                {
+                    var settings = container.GetInstance<ThumbnailGeneratorSettings>();
+                    var ffmpeg = container.GetInstance<FfmpegWrapper>();
+
+                    return new FileSystemCachedThumbnailGenerator(
+                        new FfmpegThumbnailGenerator(
+                            ffmpeg, 
+                            settings.TempFileLocation),
+                        settings.ThumbnailLocation);
+                });
             });
 
             return container;

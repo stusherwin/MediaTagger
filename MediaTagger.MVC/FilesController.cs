@@ -9,23 +9,18 @@ namespace MediaTagger.Server
 {
     public class FilesController
     {
-        private LibrarySettings _settings;
-        private LibraryXmlConverter _libraryConverter;
+        private Library _library;
 
-        public FilesController(LibrarySettings settings, LibraryXmlConverter libraryConverter)
+        public FilesController(Library library)
         {
-            _settings = settings;
-            _libraryConverter = libraryConverter;
+            _library = library;
         }
 
         public FilesOutputModel Get_files()
         {
-            var library = _libraryConverter.ReadFromFile(_settings.LibraryFile);
-            var files = library.GetAllFiles(MediaType.Image, SortOrder.LastModified(OrderDirection.Descending));
-
             return new FilesOutputModel
             {
-                Files = files.Select(f => f.Path).ToArray()
+                Files = _library.Files.Select(f => f.Path).ToArray()
             };
         }
     }

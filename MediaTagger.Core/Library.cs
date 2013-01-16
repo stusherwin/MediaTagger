@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace MediaTagger.Core
 {
@@ -14,21 +15,6 @@ namespace MediaTagger.Core
         {
             Folders = folders;
             Files = files;
-        }
-
-        public IEnumerable<MediaFile> GetAllFiles()
-        {
-            return Folders.SelectMany(lf => lf.GetFiles(MediaFileType.All));
-        }
-
-        public IEnumerable<MediaFile> GetAllFiles(MediaType mediaType, SortOrder<MediaFile> sortOrder)
-        {
-            var fileTypes = MediaFileType.All.Where(ft => ft.MediaType == mediaType);
-
-            var files = Folders
-                .SelectMany(lf => lf.GetFiles(fileTypes));
-
-            return sortOrder.Evaluate(files);
         }
     }
 }

@@ -32,10 +32,12 @@ namespace MediaTagger.Core.Xml
         private MediaFile Read(XElement element)
         {
             return new MediaFile(
+                int.Parse(element.Attribute("Id").Value),
                 element.Attribute("Name").Value,
                 element.Attribute("Path").Value,
                 DateTime.Parse(element.Attribute("LastModified").Value),
                 new FileSize(long.Parse(element.Attribute("Size").Value)),
+                TimeSpan.Parse(element.Attribute("Duration").Value),
                 MediaFileType.All.FirstOrDefault(t => t.Name == element.Attribute("Type").Value),
                 _tagConverter.ReadChildren(element, "Tag")
             );
@@ -44,10 +46,12 @@ namespace MediaTagger.Core.Xml
         private XElement Write(MediaFile item, string nodeName)
         {
             return new XElement(nodeName,
+                new XAttribute("Id", item.Id),
                 new XAttribute("Name", item.Name),
                 new XAttribute("Path", item.Path),
                 new XAttribute("LastModified", item.LastModified),
                 new XAttribute("Size", item.Size.Bytes),
+                new XAttribute("Duration", item.Duration.ToString()),
                 new XAttribute("Type", item.MediaFileType.Name),
                 _tagConverter.WriteChildren(item.Tags, "Tag")
             );

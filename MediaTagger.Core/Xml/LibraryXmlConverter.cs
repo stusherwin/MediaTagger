@@ -35,7 +35,7 @@ namespace MediaTagger.Core.Xml
                         _folderConverter.WriteChildren(library.Folders, "Folder")
                     ),
                     new XElement("Files",
-                        _fileConverter.WriteChildren(library.GetAllFiles(), "File")
+                        _fileConverter.WriteChildren(library.Files, "File")
                     )
                 )
             );

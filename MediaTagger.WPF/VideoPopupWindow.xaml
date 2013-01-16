@@ -1,9 +1,0 @@
-﻿<Window x:Class="MediaTagger.VideoPopupWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mt="clr-namespace:MediaTagger"
-        Title="VideoPopupWindow" Height="590" Width="1000">
-    <Grid>
-        <mt:VideoPlayer x:Name="VideoPlayer"></mt:VideoPlayer>
-    </Grid>
-</Window>
