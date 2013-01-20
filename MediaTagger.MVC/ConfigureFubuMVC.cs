@@ -7,7 +7,7 @@ namespace MediaTagger.Mvc
         public ConfigureFubuMVC()
         {
             // This line turns on the basic diagnostics and request tracing
-            //IncludeDiagnostics(true);
+            IncludeDiagnostics(true);
 
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
@@ -19,17 +19,12 @@ namespace MediaTagger.Mvc
                 .IgnoreMethodSuffix("Html")
                 .RootAtAssemblyNamespace();
 
-            Routes.HomeIs<HomeController>(h => h.FrontPage())
-                .IgnoreControllerNamespaceEntirely();
-
-            //this.UseSpark();
-
             // Match views to action methods by matching
             // on model type, view name, and namespace
-            //Views.TryToAttachWithDefaultConventions();
-            
-            //Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
-            //Output.ToBehavior<ThumbnailBehaviour>().WhenTheOutputModelIs<ThumbnailOutputModel>();
+            Views.TryToAttachWithDefaultConventions();
+
+            Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
+            Output.ToBehavior<ThumbnailBehaviour>().WhenTheOutputModelIs<ThumbnailOutputModel>();
 
             Models.ConvertUsing<DurationConverter>();
         }

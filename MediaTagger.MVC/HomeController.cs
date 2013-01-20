@@ -2,13 +2,9 @@
 {
     public class HomeController
     {
-        public HomeViewModel FrontPage()
+        public string Get_()
         {
-            return new HomeViewModel();
+            return "";
         }
-    }
-
-    public class HomeViewModel
-    {
     }
 }
