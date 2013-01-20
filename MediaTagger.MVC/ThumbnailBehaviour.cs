@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FubuMVC.Core.Behaviors;
+﻿using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Http;
-using System.Drawing;
-using System.Drawing.Imaging;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class ThumbnailBehaviour : IActionBehavior
     {

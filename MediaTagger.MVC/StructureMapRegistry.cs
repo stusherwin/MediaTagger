@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MediaTagger.Mvc.IOC;
 using StructureMap;
 using FubuMVC.StructureMap;
 using FubuCore.Configuration;
 using MediaTagger.Core;
-using MediaTagger.Core.Xml;
-using System.Web.Hosting;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class StructureMapRegistry
     {
@@ -27,34 +22,14 @@ namespace MediaTagger.Server
 
                 x.For<ISettingsProvider>().Use<AppSettingsProvider>();
 
-                x.For<Library>().Singleton().Use(() =>
-                {
-                    var converter = container.GetInstance<LibraryXmlConverter>();
-                    var settings = container.GetInstance<LibrarySettings>();
+                x.For<Library>().Singleton()
+                    .FindAndUseProvider(container).OfType<LibraryProvider>();
 
-                    return converter.ReadFromFile(settings.LibraryFile);
-                });
+                x.For<FfmpegWrapper>()
+                    .FindAndUseProvider(container).OfType<FfmpegWrapperProvider>();
 
-                x.For<FfmpegWrapper>().Use(() =>
-                {
-                    var settings = container.GetInstance<ThumbnailGeneratorSettings>();
-
-                    return new FfmpegWrapper(
-                        HostingEnvironment.MapPath(settings.FfmpegPath)
-                    );
-                });
-
-                x.For<IThumbnailGenerator>().Use(() =>
-                {
-                    var settings = container.GetInstance<ThumbnailGeneratorSettings>();
-                    var ffmpeg = container.GetInstance<FfmpegWrapper>();
-
-                    return new FileSystemCachedThumbnailGenerator(
-                        new FfmpegThumbnailGenerator(
-                            ffmpeg, 
-                            settings.TempFileLocation),
-                        settings.ThumbnailLocation);
-                });
+                x.For<IThumbnailGenerator>()
+                    .FindAndUseProvider(container).OfType<ThumbnailGeneratorProvider>();
             });
 
             return container;

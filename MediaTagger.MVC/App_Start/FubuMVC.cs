@@ -1,13 +1,12 @@
-using System.Web.Routing;
 using Bottles;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
-using StructureMap;
+using MediaTagger.Mvc.App_Start;
 
 // You can remove the reference to WebActivator by calling the Start() method from your Global.asax Application_Start
-[assembly: WebActivator.PreApplicationStartMethod(typeof(MediaTagger.Server.App_Start.AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
 
-namespace MediaTagger.Server.App_Start
+namespace MediaTagger.Mvc.App_Start
 {
     public static class AppStartFubuMVC
     {

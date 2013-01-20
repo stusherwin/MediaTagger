@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
-using System.Drawing;
-using FubuMVC.Core.Behaviors;
-using System.Drawing.Imaging;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Web.Hosting;
 using MediaTagger.Core;
-using MediaTagger.Core.Xml;
+using MediaTagger.Mvc.Configuration;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class ThumbnailController
     {
-        private Library _library;
-        private IThumbnailGenerator _generator;
-        private ThumbnailGeneratorSettings _settings;
+        private readonly Library _library;
+        private readonly IThumbnailGenerator _generator;
+        private readonly ThumbnailGeneratorSettings _settings;
 
         public ThumbnailController(Library library, IThumbnailGenerator generator, ThumbnailGeneratorSettings settings)
         {
@@ -34,32 +25,31 @@ namespace MediaTagger.Server
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            TimeSpan thumbnailTime = GetDefaultThumbnailTime(videoFile);
+            Duration defaultDuration = GetDefaultThumbnailDuration(videoFile);
 
-            return GenerateOutput(videoFile, thumbnailTime);
+            return GenerateOutput(videoFile, defaultDuration);
         }
 
-        public ThumbnailOutputModel get_Thumbnail_FileId_ThumbnailTime(ThumbnailInputModel model)
+        public ThumbnailOutputModel get_Thumbnail_FileId_ThumbnailDuration(ThumbnailInputModel model)
         {
             var videoFile = _library.Files.FirstOrDefault(f => f.Id == model.FileId);
 
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            return GenerateOutput(videoFile, model.ThumbnailTime);
+            return GenerateOutput(videoFile, model.ThumbnailDuration);
         }
 
-        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile, TimeSpan thumbnailTime)
+        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile, Duration thumbnailDuration)
         {
-            var thumbnail = _generator.Generate(videoFile, thumbnailTime);
+            var thumbnail = _generator.Generate(videoFile, thumbnailDuration);
 
             return new ThumbnailOutputModel(thumbnail);
         }
 
-        //TODO: move to Duration value object
-        private TimeSpan GetDefaultThumbnailTime(MediaFile videoFile)
+        private Duration GetDefaultThumbnailDuration(MediaFile videoFile)
         {
-            return new TimeSpan((long)(videoFile.Duration.Ticks * _settings.DefaultThumbnailTimePercentage / 100.0));
+            return videoFile.Duration.GetPercentage(_settings.DefaultThumbnailTimePercentage);
         }
     }
 }

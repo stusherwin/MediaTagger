@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MediaTagger.Core.Xml;
+﻿using System.Linq;
 using MediaTagger.Core;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class FilesController
     {
-        private Library _library;
+        private readonly Library _library;
 
         public FilesController(Library library)
         {

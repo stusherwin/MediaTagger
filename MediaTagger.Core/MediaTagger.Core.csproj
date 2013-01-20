@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachingThumbnailGenerator.cs" />
+    <Compile Include="Duration.cs" />
     <Compile Include="FfmpegWrapper.cs" />
     <Compile Include="FileSize.cs" />
     <Compile Include="FileSizeUnit.cs" />

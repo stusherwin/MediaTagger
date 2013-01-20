@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 
 namespace MediaTagger.Core
 {
@@ -15,9 +12,9 @@ namespace MediaTagger.Core
         public string Path { get; private set; }
         public DateTime LastModified { get; private set; }
         public FileSize Size { get; private set; }
-        public TimeSpan Duration { get; set; }
+        public Duration Duration { get; set; }
 
-        public MediaFile(int id, string name, string path, DateTime lastModified, FileSize size, TimeSpan duration, MediaFileType type, ICollection<Tag> tags)
+        public MediaFile(int id, string name, string path, DateTime lastModified, FileSize size, Duration duration, MediaFileType type, ICollection<Tag> tags)
         {
             Id = id;
             Name = name;

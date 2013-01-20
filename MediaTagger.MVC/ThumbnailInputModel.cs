@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MediaTagger.Core;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class ThumbnailInputModel
     {
         public int FileId { get; set; }
-        public TimeSpan ThumbnailTime { get; set; }
+        public Duration ThumbnailDuration { get; set; }
     }
 }

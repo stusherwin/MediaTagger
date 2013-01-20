@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using FubuMVC.Core;
+﻿using FubuMVC.Core;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class FilesOutputModel : JsonMessage
     {

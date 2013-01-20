@@ -10,8 +10,8 @@ namespace MediaTagger.Core
 {
     public class FileSystemCachedThumbnailGenerator : IThumbnailGenerator
     {
-        private IThumbnailGenerator _thumbnailGenerator;
-        private string _thumbnailLocation;
+        private readonly IThumbnailGenerator _thumbnailGenerator;
+        private readonly string _thumbnailLocation;
 
         public FileSystemCachedThumbnailGenerator(IThumbnailGenerator thumbnailGenerator, string thumbnailLocation)
         {
@@ -19,22 +19,22 @@ namespace MediaTagger.Core
             _thumbnailLocation = thumbnailLocation;
         }
 
-        public ThumbnailImage Generate(MediaFile videoFile, TimeSpan thumbnailTime)
+        public ThumbnailImage Generate(MediaFile videoFile, Duration thumbnailDuration)
         {
-            if(!CachedFileExists(videoFile, thumbnailTime))
-                CreateCachedFile(videoFile, thumbnailTime);
+            if(!CachedFileExists(videoFile, thumbnailDuration))
+                CreateCachedFile(videoFile, thumbnailDuration);
 
-            return GetCachedFile(videoFile, thumbnailTime);
+            return GetCachedFile(videoFile, thumbnailDuration);
         }
 
-        private bool CachedFileExists(MediaFile videoFile, TimeSpan thumbnailTime)
+        private bool CachedFileExists(MediaFile videoFile, Duration thumbnailTime)
         {
             var thumbnailFile = GetThumbnailFile(videoFile, thumbnailTime);
 
             return File.Exists(thumbnailFile);
         }
 
-        private void CreateCachedFile(MediaFile videoFile, TimeSpan thumbnailTime)
+        private void CreateCachedFile(MediaFile videoFile, Duration thumbnailTime)
         {
             var thumbnail = _thumbnailGenerator.Generate(videoFile, thumbnailTime);
             var thumbnailFile = GetThumbnailFile(videoFile, thumbnailTime);
@@ -45,16 +45,16 @@ namespace MediaTagger.Core
             thumbnail.Image.Save(thumbnailFile);
         }
 
-        private ThumbnailImage GetCachedFile(MediaFile videoFile, TimeSpan thumbnailTime)
+        private ThumbnailImage GetCachedFile(MediaFile videoFile, Duration thumbnailTime)
         {
             var thumbnailFile = GetThumbnailFile(videoFile, thumbnailTime);
 
             return new ThumbnailImage(Image.FromFile(thumbnailFile), new ImageType(ImageFormat.Png, "image/png"));
         }
 
-        private string GetThumbnailFile(MediaFile videoFile, TimeSpan thumbnailTime)
+        private string GetThumbnailFile(MediaFile videoFile, Duration thumbnailTime)
         {
-            return _thumbnailLocation + "\\" + videoFile.Id.ToString() + "_" + thumbnailTime.Ticks + ".png";
+            return _thumbnailLocation + "\\" + videoFile.Id.ToString() + "_" + thumbnailTime.Value.Ticks + ".png";
         }
     }
 }

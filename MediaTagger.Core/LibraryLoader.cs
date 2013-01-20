@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
-using System.Diagnostics;
 
 namespace MediaTagger.Core
 {
     public class LibraryLoader
     {
-        private FfmpegWrapper _ffmpeg;
+        private readonly FfmpegWrapper _ffmpeg;
 
         public LibraryLoader(FfmpegWrapper ffmpeg)
         {
@@ -37,7 +34,7 @@ namespace MediaTagger.Core
         {
             return new MediaFile(
                 id,
-                System.IO.Path.GetFileNameWithoutExtension(fileInfo.Name),
+                Path.GetFileNameWithoutExtension(fileInfo.Name),
                 fileInfo.FullName,
                 fileInfo.LastWriteTime,
                 new FileSize(fileInfo.Length),
@@ -47,7 +44,7 @@ namespace MediaTagger.Core
             );
         }
 
-        public TimeSpan GetDuration(string filePath)
+        public Duration GetDuration(string filePath)
         {
             return _ffmpeg.GetDuration(filePath);
         }

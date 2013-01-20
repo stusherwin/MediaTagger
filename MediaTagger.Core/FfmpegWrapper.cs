@@ -16,23 +16,23 @@ namespace MediaTagger.Core
             _ffmpegPath = ffmpegPath;
         }
 
-        public void CreateThumbnailImage(string videoPath, TimeSpan thumbnailTime, string thumbnailImagePath)
+        public void CreateThumbnailImage(string videoPath, Duration thumbnailTime, string thumbnailImagePath)
         {
-            var arguments = "-i \"" + videoPath + "\" -ss " + thumbnailTime + " -f image2 -vframes 1 \"" + thumbnailImagePath + "\"";
+            var arguments = "-i \"" + videoPath + "\" -ss " + thumbnailTime.Value + " -f image2 -vframes 1 \"" + thumbnailImagePath + "\"";
 
             Ffmpeg(arguments);
         }
 
-        public TimeSpan GetDuration(string videoPath)
+        public Duration GetDuration(string videoPath)
         {
             var arguments = "-i \"" + videoPath + "\"";
 
             string output = Ffmpeg(arguments);
             var match = Regex.Match(output, @"Duration\: (\d+\:\d+\:\d+\.\d+),");
             if (!match.Success || match.Groups[1] == null || String.IsNullOrEmpty(match.Groups[1].Value))
-                return TimeSpan.Zero;
+                return Duration.Zero;
 
-            return TimeSpan.Parse(match.Groups[1].Value);
+            return Duration.FromTimeSpanString(match.Groups[1].Value);
         }
 
         private string Ffmpeg(string arguments)

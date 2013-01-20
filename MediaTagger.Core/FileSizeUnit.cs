@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MediaTagger.Core
 {
@@ -18,7 +16,7 @@ namespace MediaTagger.Core
 
         public double GetValue(long bytes)
         {
-            return Math.Round((double)bytes / (double)NoOfBytes, 2);
+            return Math.Round(bytes / (double)NoOfBytes, 2);
         }
 
         public override string ToString()

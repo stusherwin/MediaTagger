@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using MediaTagger.Core;
+﻿using MediaTagger.Core;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class ThumbnailOutputModel
     {

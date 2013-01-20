@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MediaTagger.Core
+﻿namespace MediaTagger.Core
 {
     public interface IThumbnailGenerator
     {
-        ThumbnailImage Generate(MediaFile videoFile, TimeSpan thumbnailTime);
+        ThumbnailImage Generate(MediaFile videoFile, Duration thumbnailDuration);
     }
 }

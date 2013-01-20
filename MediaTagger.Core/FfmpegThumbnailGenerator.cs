@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Linq;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Diagnostics;
 using System.IO;
+
 namespace MediaTagger.Core
 {
     public class FfmpegThumbnailGenerator : IThumbnailGenerator
     {
-        private FfmpegWrapper _ffmpeg;
-        private string _tempFileLocation;
+        private const string TEMP_FILE_BASE = "tmp";
+        private const string TEMP_FILE_EXTENSION = ".png";
+        private static readonly ImageType THUMBNAIL_IMAGE_TYPE = new ImageType(ImageFormat.Png, "image/png");
 
-        static object _thumbnailLock = new object();
+        private readonly FfmpegWrapper _ffmpeg;
+        private readonly string _tempFileLocation;
+
+        static readonly object _thumbnailLock = new object();
 
         public FfmpegThumbnailGenerator(FfmpegWrapper ffmpeg, string tempFileLocation)
         {
@@ -22,35 +22,57 @@ namespace MediaTagger.Core
             _tempFileLocation = tempFileLocation;
         }
 
-        public ThumbnailImage Generate(MediaFile videoFile, TimeSpan thumbnailTime)
+        public ThumbnailImage Generate(MediaFile videoFile, Duration thumbnailDuration)
         {
-            string thumbnailFile;
+            string thumbnailFile = CreateUniqueThumbnailFile();
+            try
+            {
+                var thumbnail = GenerateThumbnail(videoFile, thumbnailDuration, thumbnailFile);
+                return thumbnail;
+            }
+            finally
+            {
+                if(File.Exists(thumbnailFile))
+                    File.Delete(thumbnailFile);
+            }
+        }
 
+        private string CreateUniqueThumbnailFile()
+        {
+            string file;
+
+            // lock so parallel threads don't get given the same temp file
             lock (_thumbnailLock)
             {
-                thumbnailFile = CreateUniqueFile(_tempFileLocation, "tmp", ".png");
+                file = GetUniqueFileName(_tempFileLocation, TEMP_FILE_BASE, TEMP_FILE_EXTENSION);
+                CreateFile(file);
             }
-            var thumbnail = GenerateThumbnail(videoFile, thumbnailTime, thumbnailFile);
-            //File.Delete(thumbnailFile);
 
-            return thumbnail;
+            return file;
         }
 
-        private ThumbnailImage GenerateThumbnail(MediaFile videoFile, TimeSpan thumbnailTime, string thumbnailFile)
+        private ThumbnailImage GenerateThumbnail(MediaFile videoFile, Duration thumbnailTime, string thumbnailFile)
         {
-            _ffmpeg.CreateThumbnailImage(videoFile.Path, RestrictToVideoDuration(thumbnailTime, videoFile), thumbnailFile);
-            var image = Image.FromFile(thumbnailFile);
-            return new ThumbnailImage(image, new ImageType(ImageFormat.Png, "image/png"));
+            _ffmpeg.CreateThumbnailImage(videoFile.Path, thumbnailTime.CapAt(videoFile.Duration), thumbnailFile);
+            var image = LoadImageWithoutLockingFile(thumbnailFile);
+            return new ThumbnailImage(image, THUMBNAIL_IMAGE_TYPE);
         }
 
-        private static string CreateUniqueFile(string directory, string fileNameBase, string extension)
+        private Image LoadImageWithoutLockingFile(string imageFile)
         {
-            string fileName = GetUniqueFileName(directory, fileNameBase, extension);
-                
+            using (var fs = new FileStream(imageFile, FileMode.Open, FileAccess.Read))
+            {
+                using (var image = Image.FromStream(fs))
+                {
+                    return (Image)image.Clone();
+                }
+            }
+        }
+
+        private static void CreateFile(string fileName)
+        {
             using(var fs = File.Create(fileName))
                 fs.Close();
-
-            return fileName;
         }
 
         private static string GetUniqueFileName(string directory, string fileNameBase, string extension)
@@ -69,14 +91,6 @@ namespace MediaTagger.Core
             }
 
             return candidate;
-        }
-
-        //TODO: move to Duration value object
-        private static TimeSpan RestrictToVideoDuration(TimeSpan time, MediaFile videoFile)
-        {
-            return time > videoFile.Duration 
-                ? videoFile.Duration 
-                : time;
         }
     }
 }

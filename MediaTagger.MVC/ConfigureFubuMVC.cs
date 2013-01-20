@@ -1,7 +1,6 @@
 using FubuMVC.Core;
-using System.Drawing;
 
-namespace MediaTagger.Server
+namespace MediaTagger.Mvc
 {
     public class ConfigureFubuMVC : FubuRegistry
     {
@@ -27,7 +26,7 @@ namespace MediaTagger.Server
             Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
             Output.ToBehavior<ThumbnailBehaviour>().WhenTheOutputModelIs<ThumbnailOutputModel>();
 
-            Models.ConvertUsing<TimeSpanConverter>();
+            Models.ConvertUsing<DurationConverter>();
         }
     }
 }

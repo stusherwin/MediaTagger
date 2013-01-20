@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediaTagger.Server</RootNamespace>
-    <AssemblyName>MediaTagger.Server</AssemblyName>
+    <RootNamespace>MediaTagger.Mvc</RootNamespace>
+    <AssemblyName>MediaTagger.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightApplicationList>
     </SilverlightApplicationList>
@@ -97,19 +97,24 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="IOC\FfmpegWrapperProvider.cs" />
     <Compile Include="FilesController.cs" />
     <Compile Include="FilesModel.cs" />
     <Compile Include="HomeController.cs" />
+    <Compile Include="IOC\IProvider.cs" />
     <Compile Include="LibraryLoadController.cs" />
+    <Compile Include="IOC\LibraryProvider.cs" />
+    <Compile Include="StructureMapExtensions.cs" />
     <Compile Include="ThumbnailBehaviour.cs" />
     <Compile Include="ThumbnailController.cs" />
-    <Compile Include="ThumbnailGeneratorSettings.cs" />
+    <Compile Include="IOC\ThumbnailGeneratorProvider.cs" />
+    <Compile Include="Configuration\ThumbnailGeneratorSettings.cs" />
     <Compile Include="ThumbnailInputModel.cs" />
     <Compile Include="ThumbnailOutputModel.cs" />
-    <Compile Include="LibrarySettings.cs" />
+    <Compile Include="Configuration\LibrarySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureMapRegistry.cs" />
-    <Compile Include="TimeSpanConverter.cs" />
+    <Compile Include="DurationConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
