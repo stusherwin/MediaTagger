@@ -43,6 +43,8 @@ namespace MediaTagger.Core
             p.StartInfo.Arguments = arguments;
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
             p.Start();
 
             string output = p.StandardError.ReadToEnd();
