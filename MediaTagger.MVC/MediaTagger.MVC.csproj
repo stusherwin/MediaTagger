@@ -93,6 +93,35 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="_content\css\home.css" />
+    <Content Include="_content\css\normalize.css" />
+    <Content Include="_content\html\home.htm" />
+    <Content Include="_content\html\video.htm" />
+    <Content Include="_content\img\loading.gif" />
+    <Content Include="_content\js\angular.min.js" />
+    <Content Include="_content\js\home.js" />
+    <Content Include="_content\js\jquery.min.js" />
+    <Content Include="_content\js\mediaelement\background.png" />
+    <Content Include="_content\js\mediaelement\bigplay.png" />
+    <Content Include="_content\js\mediaelement\bigplay.svg" />
+    <Content Include="_content\js\mediaelement\controls-ted.png" />
+    <Content Include="_content\js\mediaelement\controls-wmp-bg.png" />
+    <Content Include="_content\js\mediaelement\controls-wmp.png" />
+    <Content Include="_content\js\mediaelement\controls.png" />
+    <Content Include="_content\js\mediaelement\controls.svg" />
+    <Content Include="_content\js\mediaelement\flashmediaelement.swf" />
+    <Content Include="_content\js\mediaelement\jquery.js" />
+    <Content Include="_content\js\mediaelement\loading.gif" />
+    <Content Include="_content\js\mediaelement\mediaelement-and-player.js" />
+    <Content Include="_content\js\mediaelement\mediaelement-and-player.min.js" />
+    <Content Include="_content\js\mediaelement\mediaelement.js" />
+    <Content Include="_content\js\mediaelement\mediaelement.min.js" />
+    <Content Include="_content\js\mediaelement\mediaelementplayer.css" />
+    <Content Include="_content\js\mediaelement\mediaelementplayer.js" />
+    <Content Include="_content\js\mediaelement\mediaelementplayer.min.css" />
+    <Content Include="_content\js\mediaelement\mediaelementplayer.min.js" />
+    <Content Include="_content\js\mediaelement\mejs-skins.css" />
+    <Content Include="_content\js\mediaelement\silverlightmediaelement.xap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
@@ -104,6 +133,7 @@
     <Compile Include="IOC\IProvider.cs" />
     <Compile Include="LibraryLoadController.cs" />
     <Compile Include="IOC\LibraryProvider.cs" />
+    <Compile Include="MediaInputModel.cs" />
     <Compile Include="StructureMapExtensions.cs" />
     <Compile Include="ThumbnailBehaviour.cs" />
     <Compile Include="ThumbnailController.cs" />
@@ -115,6 +145,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureMapRegistry.cs" />
     <Compile Include="DurationConverter.cs" />
+    <Compile Include="MediaBehaviour.cs" />
+    <Compile Include="MediaController.cs" />
+    <Compile Include="MediaOutputModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -128,6 +161,7 @@
       <Name>MediaTagger.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

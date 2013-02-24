@@ -2,8 +2,9 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using ImageResizer;
 
-namespace MediaTagger.Core
+namespace MediaTagger.Core.Thumbnails
 {
     public class FfmpegThumbnailGenerator : IThumbnailGenerator
     {
@@ -14,7 +15,7 @@ namespace MediaTagger.Core
         private readonly FfmpegWrapper _ffmpeg;
         private readonly string _tempFileLocation;
 
-        static readonly object _thumbnailLock = new object();
+        private static readonly object _thumbnailLock = new object();
 
         public FfmpegThumbnailGenerator(FfmpegWrapper ffmpeg, string tempFileLocation)
         {
@@ -22,13 +23,13 @@ namespace MediaTagger.Core
             _tempFileLocation = tempFileLocation;
         }
 
-        public ThumbnailImage Generate(MediaFile videoFile, Duration thumbnailDuration)
+        public ThumbnailImage Generate(MediaFile videoFile, ThumbnailGenerationOptions options)
         {
             string thumbnailFile = CreateUniqueThumbnailFile();
+
             try
             {
-                var thumbnail = GenerateThumbnail(videoFile, thumbnailDuration, thumbnailFile);
-                return thumbnail;
+                return GenerateThumbnail(videoFile, options, thumbnailFile);
             }
             finally
             {
@@ -51,13 +52,17 @@ namespace MediaTagger.Core
             return file;
         }
 
-        private ThumbnailImage GenerateThumbnail(MediaFile videoFile, Duration thumbnailTime, string thumbnailFile)
+        private ThumbnailImage GenerateThumbnail(MediaFile videoFile, ThumbnailGenerationOptions options, string thumbnailFile)
         {
-            _ffmpeg.CreateThumbnailImage(videoFile.Path, thumbnailTime.CapAt(videoFile.Duration), thumbnailFile);
+            var pointInTime = options.PointInTime.CapAt(videoFile.Duration);
+            _ffmpeg.CreateThumbnailImage(videoFile.Path, pointInTime, thumbnailFile);
+
             var image = LoadImageWithoutLockingFile(thumbnailFile);
+
             return new ThumbnailImage(image, THUMBNAIL_IMAGE_TYPE);
         }
 
+        //TODO: refactor to separate class
         private Image LoadImageWithoutLockingFile(string imageFile)
         {
             using (var fs = new FileStream(imageFile, FileMode.Open, FileAccess.Read))

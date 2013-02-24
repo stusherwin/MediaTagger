@@ -1,4 +1,5 @@
 ﻿using MediaTagger.Core;
+using MediaTagger.Core.Thumbnails;
 
 namespace MediaTagger.Mvc
 {

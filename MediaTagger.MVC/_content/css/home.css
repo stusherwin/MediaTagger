@@ -1,0 +1,131 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:#222;
+    color:White;
+    font-family:Sans-Serif;
+}
+
+img {
+    display:block;
+    margin:0;
+    padding:0;
+}
+
+a {
+    color:White;
+}
+
+ul {
+    margin:0;
+    padding:0;
+}
+
+.thumbnails {
+    margin: 10px;
+}
+
+.thumbnails {
+    width: 100%;
+}
+
+.thumbnails li {
+    list-style:none;
+    float:left;
+    margin:10px;
+    background: #000;
+}
+
+.thumbnails a, .thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;  
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.thumbnail.loading {
+    background: #000 url(../img/loading.gif) no-repeat center center;
+}
+      
+.display-video {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+        
+.display-video .box {
+    border: 1px solid #888;
+    background: #222;
+    width: 682px;
+    height: 321px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -341px;
+    margin-top: -160px;
+    box-shadow: black 0px 0px 20px 2px;
+    padding: 10px;
+}
+
+.display-video .box a {
+    font-size: 16px;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    text-decoration: none;
+    color: #888;
+}
+
+.display-video h3 {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.display-video .box a:hover {
+    color: white;
+}
+
+.display-video .video {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.display-video .details {
+    position: relative;     
+    float: left;
+    width: 250px;
+    height: 300px;
+}
+
+.display-video .details p {
+    font-size: 10px;
+}
+
+.display-video .description {
+    overflow: auto;
+    max-height: 160px;
+}
+
+.display-video .tags {
+    position: absolute;
+    bottom: 0px;
+    margin: 0;
+}
+
+/* fix MediaElement.js button styling */
+.mejs-video button { width: 16px !important; }

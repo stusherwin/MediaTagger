@@ -17,6 +17,7 @@ namespace MediaTagger.Mvc
             Routes
                 .IgnoreControllerNamesEntirely()
                 .IgnoreMethodSuffix("Html")
+                //.HomeIs<HomeController>(c => c.GetHtml())
                 .RootAtAssemblyNamespace();
 
             // Match views to action methods by matching
@@ -24,7 +25,9 @@ namespace MediaTagger.Mvc
             Views.TryToAttachWithDefaultConventions();
 
             Output.ToJson.WhenTheOutputModelIs<JsonMessage>();
+            Output.ToHtml.WhenTheOutputModelIs<string>();
             Output.ToBehavior<ThumbnailBehaviour>().WhenTheOutputModelIs<ThumbnailOutputModel>();
+            Output.ToBehavior<MediaBehaviour>().WhenTheOutputModelIs<MediaOutputModel>();
 
             Models.ConvertUsing<DurationConverter>();
         }

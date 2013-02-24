@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="/_content/js/jquery.min.js"></script>
+    <script src="/_content/js/angular.min.js"></script>
+    <script src="/_content/js/home.js"></script>
+    <link rel="Stylesheet" type="text/css" href="/_content/css/normalize.css" />
+    <link rel="Stylesheet" type="text/css" href="/_content/css/home.css" />
+    <script src="/_content/js/mediaelement/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="/_content/js/mediaelement/mediaelementplayer.css" />
+</head>
+    <body data-ng-app="homePage">
+        <ul class="thumbnails fluid-grid" data-child-max-width="500" data-child-max-height="375" data-child-margin="20" ng-controller="ThumbnailsController">
+            <li data-ng-repeat="v in videos">
+                <a data-ng-click="setCurrentVideo(v)">
+                    <div class="thumbnail" data-thumbnail-url="{{v.thumbnailUrl}}"></div> 
+                </a>
+            </li>
+        </ul>
+        <div class="display-video" data-ng-controller="VideoController" data-ng-show="visible">
+            <div class="box">
+                <div class="video" data-width="400" data-height="300" data-video-object="currentVideo">
+                </div>
+                <div class="details">
+                    <h3>{{currentVideo.title}}</h3>
+                    <div class="description">
+                        <p>{{currentVideo.description}}</p>    
+                    </div>
+                    <p class="tags">Tags: abc, def, ghi, jkl</p>
+                </div>
+                <a class="close" data-ng-click="close()" href="">&times;</a>
+            </div>
+        </div>   
+    </body>
+</html>

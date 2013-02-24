@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Web;
 using MediaTagger.Core;
+using MediaTagger.Core.Thumbnails;
 using MediaTagger.Mvc.Configuration;
 
 namespace MediaTagger.Mvc
@@ -25,9 +27,7 @@ namespace MediaTagger.Mvc
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            Duration defaultDuration = GetDefaultThumbnailDuration(videoFile);
-
-            return GenerateOutput(videoFile, defaultDuration);
+            return GenerateOutput(videoFile, null, null);
         }
 
         public ThumbnailOutputModel get_Thumbnail_FileId_ThumbnailDuration(ThumbnailInputModel model)
@@ -37,19 +37,26 @@ namespace MediaTagger.Mvc
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            return GenerateOutput(videoFile, model.ThumbnailDuration);
+            return GenerateOutput(videoFile, model.ThumbnailDuration, null);
         }
 
-        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile, Duration thumbnailDuration)
+        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile, Duration pointInTime, ImageSize imageSize)
         {
-            var thumbnail = _generator.Generate(videoFile, thumbnailDuration);
+            var options = GetOptionsWithDefaults(videoFile, pointInTime, imageSize);
+            var thumbnail = _generator.Generate(videoFile, options);
+
+            // sleep to increase server round-trip time for testing
+            Thread.Sleep(1000);
 
             return new ThumbnailOutputModel(thumbnail);
         }
 
-        private Duration GetDefaultThumbnailDuration(MediaFile videoFile)
+        private ThumbnailGenerationOptions GetOptionsWithDefaults(MediaFile videoFile, Duration pointInTime, ImageSize imageSize)
         {
-            return videoFile.Duration.GetPercentage(_settings.DefaultThumbnailTimePercentage);
+            return new ThumbnailGenerationOptions(
+                pointInTime ?? videoFile.Duration.GetPercentage(_settings.DefaultThumbnailTimePercentage),
+                imageSize ?? new ImageSize(_settings.DefaultThumbnailWidth, _settings.DefaultThumbnailHeight)
+            );
         }
     }
 }

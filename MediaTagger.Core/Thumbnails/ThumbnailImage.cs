@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace MediaTagger.Core
+namespace MediaTagger.Core.Thumbnails
 {
     public class ThumbnailImage
     {

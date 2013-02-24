@@ -11,7 +11,8 @@
     <RootNamespace>MediaTagger.Core</RootNamespace>
     <AssemblyName>MediaTagger.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -37,6 +38,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.3.1\lib\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,16 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachingThumbnailGenerator.cs" />
+    <Compile Include="Thumbnails\CachingThumbnailGenerator.cs" />
     <Compile Include="Duration.cs" />
     <Compile Include="FfmpegWrapper.cs" />
     <Compile Include="FileSize.cs" />
     <Compile Include="FileSizeUnit.cs" />
+    <Compile Include="ImageSize.cs" />
     <Compile Include="ImageType.cs" />
-    <Compile Include="IThumbnailGenerator.cs" />
+    <Compile Include="Thumbnails\FileSystemImageCache.cs" />
+    <Compile Include="Thumbnails\IThumbnailGenerator.cs" />
     <Compile Include="LibraryLoader.cs" />
-    <Compile Include="ThumbnailImage.cs" />
-    <Compile Include="FfmpegThumbnailGenerator.cs" />
+    <Compile Include="Thumbnails\ThumbnailGenerationOptions.cs" />
+    <Compile Include="Thumbnails\ThumbnailImage.cs" />
+    <Compile Include="Thumbnails\FfmpegThumbnailGenerator.cs" />
     <Compile Include="Xml\TagXmlConverter.cs" />
     <Compile Include="Xml\MediaFileXmlConverter.cs" />
     <Compile Include="Library.cs" />
@@ -76,6 +83,9 @@
     <Content Include="ffmpeg.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

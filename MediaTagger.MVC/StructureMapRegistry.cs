@@ -1,4 +1,5 @@
-﻿using MediaTagger.Mvc.IOC;
+﻿using MediaTagger.Core.Thumbnails;
+using MediaTagger.Mvc.IOC;
 using StructureMap;
 using FubuMVC.StructureMap;
 using FubuCore.Configuration;

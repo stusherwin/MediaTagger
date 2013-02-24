@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="/_content/js/jquery.min.js"></script>
+    <script src="/_content/js/angular.min.js"></script>
+    <script src="/_content/js/mediaelement/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="/_content/js/mediaelement/mediaelementplayer.css" />
+    <style type="text/css">
+        button { width: 16px !important; }
+    </style>
+</head>
+    <body>
+        <div id="video1">
+        <video id="video2" width="120" height="140">
+            Sorry, your browser doesn't support HTML5 video.  
+        </video>
+        </div>
+        <button>click</button>
+        <script>
+            $('#video1').html('<div><video id="video2" width="0" height="0"></video></div>');
+            $('button').click(function () {
+                var player = new MediaElementPlayer('#video2', {
+                    type: 'video/flv',
+                    success: function (mediaElement, domObject) {
+                        var sources = [
+                            { src: "/media/1.flv", type: 'video/flv' }
+                        ];
+
+                        mediaElement.setSrc(sources);
+                        mediaElement.load();
+                        mediaElement.play();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

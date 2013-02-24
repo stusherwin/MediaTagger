@@ -16,7 +16,18 @@ namespace MediaTagger.Mvc
         {
             return new FilesOutputModel
             {
-                Files = _library.Files.Select(f => f.Path).ToArray()
+                files = _library.Files
+                    .Take(100)
+                    .Select(f => new FilesOutputModel.FileModel
+                    {
+                        id = f.Id,
+                        title = f.Name,
+                        description = "This is a description from the server.",
+                        contentType = f.MediaFileType.ContentType,
+                        mediaUrl = "/media/" + f.Id + "." + f.MediaFileType.Extension,
+                        thumbnailUrl = "/thumbnail/" + f.Id
+                    })
+                    .ToArray()
             };
         }
     }

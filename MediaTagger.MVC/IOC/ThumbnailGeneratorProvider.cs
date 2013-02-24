@@ -1,4 +1,5 @@
 ﻿using MediaTagger.Core;
+using MediaTagger.Core.Thumbnails;
 using MediaTagger.Mvc.Configuration;
 
 namespace MediaTagger.Mvc.IOC
@@ -20,7 +21,8 @@ namespace MediaTagger.Mvc.IOC
                 new FfmpegThumbnailGenerator(
                     _ffmpeg,
                     _settings.TempFileLocation),
-                _settings.ThumbnailLocation);
+                new FileSystemImageCache(_settings.ThumbnailBaseLocation),
+                new FileSystemImageCache(_settings.ThumbnailLocation));
         }
     }
 }
