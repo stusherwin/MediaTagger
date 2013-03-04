@@ -8,6 +8,13 @@ namespace MediaTagger.Core.Xml
 {
     public class LibraryFolderXmlConverter
     {
+        MediaFileXmlConverter _fileConverter;
+
+        public LibraryFolderXmlConverter(MediaFileXmlConverter fileConverter)
+        {
+            _fileConverter = fileConverter;
+        }
+
         public LibraryFolder[] ReadChildren(XContainer parent, string childNodeName)
         {
             return parent.Descendants(childNodeName)
@@ -24,13 +31,17 @@ namespace MediaTagger.Core.Xml
 
         private LibraryFolder Read(XElement element)
         {
-            return new LibraryFolder(element.Attribute("Path").Value);
+            var path = element.Attribute("Path").Value;
+            var files = _fileConverter.ReadChildren(element, "File");
+
+            return new LibraryFolder(path, files);
         }
 
         private XElement Write(LibraryFolder folder, string nodeName)
         {
             return new XElement(nodeName,
-                new XAttribute("Path", folder.Path)
+                new XAttribute("Path", folder.Path),
+                _fileConverter.WriteChildren(folder.Files, "File")
             );
         }
     }

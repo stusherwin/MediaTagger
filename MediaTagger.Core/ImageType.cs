@@ -2,15 +2,20 @@
 
 namespace MediaTagger.Core
 {
-    public class ImageType
+    public class ImageType : MediaFileType
     {
-        public ImageFormat Format;
-        public string ContentType;
+        public ImageFormat Format { get; private set; }
 
-        public ImageType(ImageFormat format, string contentType)
+        public ImageType(string name, string extension, string contentType, ImageFormat format)
+            : base(name, extension, contentType, MediaType.Image)
         {
             Format = format;
-            ContentType = contentType;
         }
+
+        public static ImageType Jpeg = new ImageType("Jpeg", ".jpg", "image/jpeg", ImageFormat.Jpeg);
+        public static ImageType Gif = new ImageType("Gif", ".gif", "image/gif", ImageFormat.Gif);
+        public static ImageType Png = new ImageType("Png", ".png", "image/png", ImageFormat.Png);
+
+        public static new ImageType[] All = new[] { Jpeg, Gif, Png };
     }
 }

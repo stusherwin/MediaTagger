@@ -22,41 +22,28 @@ namespace MediaTagger.Mvc
 
         public ThumbnailOutputModel get_Thumbnail_FileId(ThumbnailInputModel model)
         {
-            var videoFile = _library.Files.FirstOrDefault(f => f.Id == model.FileId);
+            var videoFile = _library.Files[model.FileId];
 
             if (videoFile == null)
                 throw new HttpException(404, "Not found");
 
-            return GenerateOutput(videoFile, null, null);
+            return GenerateOutput(videoFile);
         }
 
-        public ThumbnailOutputModel get_Thumbnail_FileId_ThumbnailDuration(ThumbnailInputModel model)
+        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile)
         {
-            var videoFile = _library.Files.FirstOrDefault(f => f.Id == model.FileId);
-
-            if (videoFile == null)
-                throw new HttpException(404, "Not found");
-
-            return GenerateOutput(videoFile, model.ThumbnailDuration, null);
-        }
-
-        private ThumbnailOutputModel GenerateOutput(MediaFile videoFile, Duration pointInTime, ImageSize imageSize)
-        {
-            var options = GetOptionsWithDefaults(videoFile, pointInTime, imageSize);
+            var options = GetOptions();
             var thumbnail = _generator.Generate(videoFile, options);
-
-            // sleep to increase server round-trip time for testing
-            Thread.Sleep(1000);
 
             return new ThumbnailOutputModel(thumbnail);
         }
 
-        private ThumbnailGenerationOptions GetOptionsWithDefaults(MediaFile videoFile, Duration pointInTime, ImageSize imageSize)
+        private ThumbnailGenerationOptions GetOptions()
         {
             return new ThumbnailGenerationOptions(
-                pointInTime ?? videoFile.Duration.GetPercentage(_settings.DefaultThumbnailTimePercentage),
-                imageSize ?? new ImageSize(_settings.DefaultThumbnailWidth, _settings.DefaultThumbnailHeight)
-            );
+                new PointInTime(new Percentage(_settings.DefaultThumbnailTimePercentage)), 
+                (ImageType)MediaFileType.All.FindByName(_settings.DefaultThumbnailImageType),
+                new ImageSize(_settings.DefaultThumbnailWidth, _settings.DefaultThumbnailHeight));
         }
     }
 }

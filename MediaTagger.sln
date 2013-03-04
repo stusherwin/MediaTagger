@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.Core", "MediaTa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.MVC", "MediaTagger.MVC\MediaTagger.MVC.csproj", "{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTagger.Console", "MediaTagger.Console\MediaTagger.Console.csproj", "{9853C128-C797-4799-AF5D-CF2737915411}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9BC2C224-A73F-4ED2-9670-B2C2CC91C3DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{9853C128-C797-4799-AF5D-CF2737915411}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Debug|x86.ActiveCfg = Debug|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Debug|x86.Build.0 = Debug|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Release|Any CPU.ActiveCfg = Release|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Release|x86.ActiveCfg = Release|x86
+		{9853C128-C797-4799-AF5D-CF2737915411}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

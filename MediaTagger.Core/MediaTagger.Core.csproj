@@ -51,19 +51,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Thumbnails\CachingThumbnailGenerator.cs" />
+    <Compile Include="FileCollection.cs" />
+    <Compile Include="MediaFileIdGenerator.cs" />
+    <Compile Include="MediaFileTypeCollection.cs" />
+    <Compile Include="FileSystem\FileData.cs" />
+    <Compile Include="FileSystem\FileManager.cs" />
+    <Compile Include="Thumbnails\BaseThumbnailGenerator.cs" />
     <Compile Include="Duration.cs" />
     <Compile Include="FfmpegWrapper.cs" />
     <Compile Include="FileSize.cs" />
     <Compile Include="FileSizeUnit.cs" />
     <Compile Include="ImageSize.cs" />
     <Compile Include="ImageType.cs" />
-    <Compile Include="Thumbnails\FileSystemImageCache.cs" />
+    <Compile Include="Thumbnails\BulkThumbnailGenerator.cs" />
+    <Compile Include="Thumbnails\FileSystemCachedThumbnailGenerator.cs" />
     <Compile Include="Thumbnails\IThumbnailGenerator.cs" />
-    <Compile Include="LibraryLoader.cs" />
+    <Compile Include="LibraryFolderLoader.cs" />
+    <Compile Include="Percentage.cs" />
+    <Compile Include="PointInTime.cs" />
+    <Compile Include="Thumbnails\SizedThumbnailGenerator.cs" />
+    <Compile Include="Thumbnails\ThumbnailGeneratedEventArgs.cs" />
     <Compile Include="Thumbnails\ThumbnailGenerationOptions.cs" />
     <Compile Include="Thumbnails\ThumbnailImage.cs" />
     <Compile Include="Thumbnails\FfmpegThumbnailGenerator.cs" />
+    <Compile Include="VideoType.cs" />
     <Compile Include="Xml\TagXmlConverter.cs" />
     <Compile Include="Xml\MediaFileXmlConverter.cs" />
     <Compile Include="Library.cs" />

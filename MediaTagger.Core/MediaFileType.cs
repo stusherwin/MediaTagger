@@ -1,4 +1,6 @@
-﻿namespace MediaTagger.Core
+﻿using System.Drawing.Imaging;
+
+namespace MediaTagger.Core
 {
     public class MediaFileType
     {
@@ -20,14 +22,6 @@
             return Name;
         }
 
-        public static MediaFileType[] All = new[] 
-        {
-            new MediaFileType("Flash video", "flv", "video/x-flv", MediaType.Video),
-            new MediaFileType("Windows media", "wmv", "video/x-ms-wmv", MediaType.Video),
-            new MediaFileType("Mp4", "mp4", "video/mp4", MediaType.Video),
-            new MediaFileType("Avi", "avi", "video/avi", MediaType.Video),
-            new MediaFileType("Jpeg", "jpg", "image/jpeg", MediaType.Image),
-            new MediaFileType("Gif", "gif", "image/gif", MediaType.Image),
-        };
+        public static MediaFileTypeCollection All = new MediaFileTypeCollection(VideoType.All, ImageType.All);
     }
 }

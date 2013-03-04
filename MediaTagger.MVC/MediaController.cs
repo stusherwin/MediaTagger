@@ -18,7 +18,7 @@ namespace MediaTagger.Mvc
         public MediaOutputModel get_Media_FileName(MediaInputModel model)
         {
             var id = int.Parse(model.FileName.Split('.')[0]);
-            var mediaFile = _library.Files.FirstOrDefault(f => f.Id == id);
+            var mediaFile = _library.Files[id];
 
             if (mediaFile == null)
                 throw new HttpException(404, "Not found");

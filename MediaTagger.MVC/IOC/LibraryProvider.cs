@@ -6,8 +6,8 @@ namespace MediaTagger.Mvc.IOC
 {
     public class LibraryProvider : IProvider<Library>
     {
-        LibraryXmlConverter _converter; 
-        LibrarySettings _settings;
+        readonly LibraryXmlConverter _converter;
+        readonly LibrarySettings _settings;
 
         public LibraryProvider(LibraryXmlConverter converter, LibrarySettings settings)
         {

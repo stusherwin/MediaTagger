@@ -9,5 +9,6 @@
         public double DefaultThumbnailTimePercentage { get; set; }
         public int DefaultThumbnailHeight { get; set; }
         public int DefaultThumbnailWidth { get; set; }
+        public string DefaultThumbnailImageType { get; set; }
     }
 }

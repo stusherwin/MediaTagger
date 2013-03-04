@@ -15,9 +15,7 @@ namespace MediaTagger.Mvc.IOC
 
         public FfmpegWrapper Get()
         {
-            return new FfmpegWrapper(
-                HostingEnvironment.MapPath(_settings.FfmpegPath)
-            );
+            return new FfmpegWrapper(_settings.FfmpegPath);
         }
     }
 }

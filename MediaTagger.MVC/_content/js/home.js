@@ -153,10 +153,10 @@ angular.module('directives', [])
                 scope: false,
                 restrict: 'C',
                 link: function(scope, element, attrs) {
-                    var CHILD_MAX_WIDTH = parseInt(attrs.childMaxWidth);
-                    var CHILD_MAX_HEIGHT = parseInt(attrs.childMaxHeight);
-                    var CHILD_MARGIN = parseInt(attrs.childMargin);
-                    var CHILD_ASPECT_RATIO = CHILD_MAX_WIDTH / CHILD_MAX_HEIGHT;
+                    var childMaxWidth = parseInt(attrs.childMaxWidth);
+                    var childMaxHeight = parseInt(attrs.childMaxHeight);
+                    var childMargin = parseInt(attrs.childMargin);
+                    var childAspectRatio = childMaxWidth / childMaxHeight;
 
                     scope.getWidth = function() {
                         return element.width();
@@ -190,13 +190,13 @@ angular.module('directives', [])
                     };
 
                     var calculateChildWidth = function(parentWidth) {
-                        var parentInnerWidth = parentWidth - CHILD_MARGIN;
-                        var childrenPerRow = Math.ceil(parentInnerWidth / (CHILD_MAX_WIDTH + CHILD_MARGIN));
-                        return (parentInnerWidth / childrenPerRow) - CHILD_MARGIN;
+                        var parentInnerWidth = parentWidth - childMargin;
+                        var childrenPerRow = Math.ceil(parentInnerWidth / (childMaxWidth + childMargin));
+                        return (parentInnerWidth / childrenPerRow) - childMargin;
                     };
 
                     var calculateChildHeight = function(newWidth) {
-                        return newWidth / CHILD_ASPECT_RATIO;
+                        return newWidth / childAspectRatio;
                     };
                 }
             };

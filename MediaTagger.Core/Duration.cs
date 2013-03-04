@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using MediaTagger.Core.Thumbnails;
 
 namespace MediaTagger.Core
 {
@@ -19,9 +20,9 @@ namespace MediaTagger.Core
             return Value > cap.Value ? cap : this;
         }
 
-        public static Duration FromTimeSpanString(string s)
+        public Duration GetPercentage(Percentage percentage)
         {
-            return new Duration(TimeSpan.Parse(s));
+            return new Duration(new TimeSpan(percentage.PercentageOf(Value.Ticks)));
         }
 
         public override bool Equals(object obj)
@@ -37,11 +38,19 @@ namespace MediaTagger.Core
             return Value.GetHashCode();
         }
 
-        public Duration GetPercentage(double percentage)
+        public override string ToString()
         {
-            var newTimeSpan = new TimeSpan((long)(Value.Ticks * percentage / 100.0));
+            return Value.ToString();
+        }
 
-            return new Duration(newTimeSpan);
+        public string ToTicksString()
+        {
+            return Value.Ticks.ToString();
+        }
+
+        public static Duration FromTimeSpanString(string s)
+        {
+            return new Duration(TimeSpan.Parse(s));
         }
 
         public static Duration FromHumanReadableString(string valueString)

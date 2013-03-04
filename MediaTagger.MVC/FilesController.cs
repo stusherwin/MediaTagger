@@ -16,15 +16,14 @@ namespace MediaTagger.Mvc
         {
             return new FilesOutputModel
             {
-                files = _library.Files
-                    .Take(100)
+                files = _library.Files.All
                     .Select(f => new FilesOutputModel.FileModel
                     {
                         id = f.Id,
                         title = f.Name,
                         description = "This is a description from the server.",
                         contentType = f.MediaFileType.ContentType,
-                        mediaUrl = "/media/" + f.Id + "." + f.MediaFileType.Extension,
+                        mediaUrl = "/media/" + f.Id + f.MediaFileType.Extension,
                         thumbnailUrl = "/thumbnail/" + f.Id
                     })
                     .ToArray()

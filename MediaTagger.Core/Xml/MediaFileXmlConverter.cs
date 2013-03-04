@@ -38,7 +38,7 @@ namespace MediaTagger.Core.Xml
                 DateTime.Parse(element.Attribute("LastModified").Value),
                 new FileSize(long.Parse(element.Attribute("Size").Value)),
                 Duration.FromTimeSpanString(element.Attribute("Duration").Value),
-                MediaFileType.All.FirstOrDefault(t => t.Name == element.Attribute("Type").Value),
+                MediaFileType.All.FindByName(element.Attribute("Type").Value),
                 _tagConverter.ReadChildren(element, "Tag")
             );
         }

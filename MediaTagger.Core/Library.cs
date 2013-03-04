@@ -1,14 +1,28 @@
-﻿namespace MediaTagger.Core
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace MediaTagger.Core
 {
     public class Library
     {
-        public LibraryFolder[] Folders { get; private set; }
-        public MediaFile[] Files { get; private set; }
+        private readonly List<LibraryFolder> _folders;
 
-        public Library(LibraryFolder[] folders, MediaFile[] files)
+        public FileCollection Files { get; private set; }
+        public IEnumerable<LibraryFolder> Folders { get { return _folders; } }
+
+        public Library(IEnumerable<LibraryFolder> folders)
         {
-            Folders = folders;
-            Files = files;
+            _folders = folders.ToList();
+            Files = new FileCollection(_folders);
+        }
+
+        public void AddFolder(string folderPath, LibraryFolderLoader loader)
+        {
+            if (_folders.Any(f => f.Path == folderPath))
+                return;
+
+            var folder = loader.Load(folderPath);
+            _folders.Add(folder);
         }
     }
 }
